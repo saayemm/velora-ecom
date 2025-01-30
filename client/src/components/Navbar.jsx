@@ -2,11 +2,17 @@ import { Link, NavLink } from "react-router"
 import { IoSearchOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { IoCartOutline } from "react-icons/io5";
+import { FiMenu } from "react-icons/fi";
+import { useState } from "react";
+import { IoIosArrowBack } from "react-icons/io";
 
 
 const Navbar = () => {
+
+    const [visible, setVisible] = useState(false)
+
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center px-[5vw] ">
         <div className="text-4xl text-green-800 font-bold">VELORA</div>
 
         <div>
@@ -30,7 +36,7 @@ const Navbar = () => {
             </ul>
         </div>
 
-        <div className="flex items-center gap-2 text-xl text-black">
+        <div className="flex items-center gap-4 text-xl text-black">
             <span className="cursor-pointer">{<IoSearchOutline />}</span>
             <div className="group relative">
                 <span className="cursor-pointer">{<CgProfile />}</span>
@@ -46,9 +52,22 @@ const Navbar = () => {
                 <span>{<IoCartOutline />}</span>
                 <span className="absolute right-[-8px] bottom-[-1px] w-4 p-[2px] text-center loading-4 bg-black text-white rounded-full text-[8px]">5</span>
             </Link>
+            <span onClick={()=>setVisible(true)} className="w-r cursor-pointer sm:hidden ml-2"><FiMenu /></span>
+        </div>
+        <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
+            <div className="flex flex-col text-gray-600">
+                <div onClick={()=>setVisible(false)} className="flex items-center gap-2 p-3 cursor-pointer">
+                    <span><IoIosArrowBack /></span>
+                    <p>Back</p>
+                </div>
+                <NavLink onClick={()=>setVisible(false)} className='px-8 py-2 font-semibold' to='/'>Home</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='px-8 py-2 font-semibold' to='/collection'>Collection</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='px-8 py-2 font-semibold' to='/about'>About</NavLink>
+                <NavLink onClick={()=>setVisible(false)} className='px-8 py-2 font-semibold' to='/contact'>Contact</NavLink>
+            </div>
         </div>
     </div>
-  )
+  ) 
 }
 
 export default Navbar
