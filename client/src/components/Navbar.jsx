@@ -12,7 +12,7 @@ const Navbar = () => {
     const [visible, setVisible] = useState(false)
 
   return (
-    <div className="flex justify-between items-center px-[5vw] ">
+    <div className="flex justify-between items-center px-[1vw] mt-4">
         <div className="text-4xl text-green-800 font-bold">VELORA</div>
 
         <div>
